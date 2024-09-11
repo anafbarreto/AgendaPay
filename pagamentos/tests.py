@@ -48,7 +48,7 @@ class AgendamentoTests(APITestCase):
         self.assertEqual(response.data['id'], self.agendamento.id)
 
     # check the update of a agendamento is working and returning correctly
-    def test_update_agendamento(self): 
+    def test_update_agendamento(self):
         url = reverse('agendamento-detail', kwargs={'pk': self.agendamento.id})
         data = {
             "data_pagamento": "2024-11-01",
@@ -59,11 +59,11 @@ class AgendamentoTests(APITestCase):
             "agencia": 1234,
             "conta": 56789,
             "valor_pagamento": 1500.75
-        }
+    }
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.agendamento.refresh_from_db()  # Atualizar o objeto a partir do banco de dados
-        self.assertEqual(self.agendamento.data_pagamento, '2024-11-01')
+        self.agendamento.refresh_from_db()  # atualize the object from the database
+        self.assertEqual(self.agendamento.data_pagamento.strftime('%Y-%m-%d'), '2024-11-01') # convert the date to string because its the returned JSON
 
     # validates if the agendamento has been deleted
     def test_delete_agendamento(self):

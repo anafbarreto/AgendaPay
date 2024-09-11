@@ -1,10 +1,10 @@
 from django.urls import path, include
-from rest_framework.routers import SimpleRouter
-from .views import AgendamentoCreateView
+from rest_framework.routers import DefaultRouter
+from .views import AgendamentoViewSet
 
-router = SimpleRouter(trailing_slash=False) # add / at the end URL
-router.register('agendamentos/', AgendamentoCreateView) # define URL
+router = DefaultRouter()  # CRUD complete 
+router.register(r'agendamentos', AgendamentoViewSet)  
 
 urlpatterns = [
-    path('', include(router.urls)), 
+    path('', include(router.urls)),  # routes all URLs from the router
 ]

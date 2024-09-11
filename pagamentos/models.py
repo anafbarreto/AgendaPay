@@ -12,9 +12,9 @@ class Agendamento(models.Model):
     conta = models.IntegerField()
     valor_pagamento = models.DecimalField(max_digits=10, decimal_places=2)
 
-    def save(self, *args, **kwargs):
+    """def save(self, *args, **kwargs):
         if self.valor_pagamento is not None:
            self.valor_pagamento = Decimal(int(self.valor_pagamento))
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs)"""
 
   

@@ -1,7 +1,8 @@
 from django.db import models
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 
 class Agendamento(models.Model):
+    id = models.BigAutoField(primary_key=True)
     data_pagamento = models.DateField()
     permite_recorrencia = models.BooleanField()
     quantidade_recorrencia = models.IntegerField()
@@ -12,6 +13,8 @@ class Agendamento(models.Model):
     valor_pagamento = models.DecimalField(max_digits=10, decimal_places=2)
 
     def save(self, *args, **kwargs):
-        # Converte valor_pagamento para inteiro antes de salvar
-        self.valor_pagamento = int(self.valor_pagamento)
+        if self.valor_pagamento is not None:
+           self.valor_pagamento = Decimal(int(self.valor_pagamento))
         super().save(*args, **kwargs)
+
+  

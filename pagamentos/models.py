@@ -1,5 +1,5 @@
 from django.db import models
-from decimal import Decimal, ROUND_HALF_UP
+
 
 class Agendamento(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -10,11 +10,8 @@ class Agendamento(models.Model):
     status_recorrencia = models.CharField(max_length=100)
     agencia = models.IntegerField()
     conta = models.IntegerField()
-    valor_pagamento = models.DecimalField(max_digits=10, decimal_places=2)
+    valor_pagamento = models.IntegerField()
 
-    """def save(self, *args, **kwargs):
-        if self.valor_pagamento is not None:
-           self.valor_pagamento = Decimal(int(self.valor_pagamento))
-        super().save(*args, **kwargs)"""
+
 
   

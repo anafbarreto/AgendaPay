@@ -40,7 +40,7 @@ class AgendamentoTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Agendamento.objects.count(), 2)  
 
-    # validates that the query for a specific agendamento  is working and that the data returned is correct
+    # validates that the query for a specific agendamento is working and that the data returned is correct
     def test_retrieve_agendamento(self): 
         url = reverse('agendamento-detail', kwargs={'pk': self.agendamento.id})
         response = self.client.get(url)
